@@ -10,14 +10,14 @@
   <body>
     <div class="slider slider--wrap">
       <div class="progress-wrap">
-        <div class="status"></div>
-        <span class="stop-progress play"></span>
+        <div class="status" data-status="status"></div>
+        <span class="stop-progress play" data-pause-play="stop-progress"></span>
       </div>
 
       <div class="slider__div">
         <div class="slider__div--content" data-slider="0">
           <img
-            src="./images/slider_banner_1.jpg"
+            src="./images/slider_banner_6.jpg"
             alt="slider-banner-1"
             class="slider__div--content__image"
           />
@@ -46,7 +46,7 @@
         </div>
         <div class="slider__div--content" data-slider="1">
           <img
-            src="./images/slider_banner_2.jpg"
+            src="./images/slider_banner_7.jpg"
             alt="slider-banner-1"
             class="slider__div--content__image"
           />
@@ -69,11 +69,11 @@
             7.5% Off up to Rs 1,500 on a min transaction of Rs 600
           </p>
           <div class="slider-details">
-            <button class="slider-details__knowmore">Know more</button>
+            <a class="slider-details__knowmore" href="#">Know more</a>
             <span class="slider-details__expiry">expires in 6 days</span>
           </div>
         </div>
-        <div class="slider__div--content" data-slider="2">
+        <!-- <div class="slider__div--content" data-slider="2">
           <img
             src="./images/slider_banner_3.jpg"
             alt="slider-banner-1"
@@ -130,10 +130,10 @@
             <button class="slider-details__knowmore">Know more</button>
             <span class="slider-details__expiry">expires in 6 days</span>
           </div>
-        </div>
+        </div> -->
         <div class="button-next-prev">
-          <button class="prev"></button>
-          <button class="next"></button>
+          <button class="prev" data-prev="prev"></button>
+          <button class="next" data-next="next"></button>
         </div>
       </div>
     </div>

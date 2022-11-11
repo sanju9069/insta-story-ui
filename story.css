@@ -18,6 +18,9 @@ img {
 .slider {
   background: linear-gradient(49.62deg, #0c101f 0%, #131b34 100%);
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 .progress-wrap {
   padding: 18px 20px;
@@ -89,12 +92,10 @@ img {
 }
 .slider__div {
   display: flex;
-  flex-wrap: wrap;
-  height: 100%;
   justify-content: center;
-  align-items: center;
   background: linear-gradient(199.14deg, #11182f 0%, #0b0a0f 101.06%);
   position: relative;
+  flex: 1;
 }
 .button-next-prev {
   position: absolute;
@@ -120,8 +121,9 @@ img {
 }
 .slider__div--content__image {
   border-radius: 30px 30px 0 0;
-  max-height: 335px;
-  min-height: 335px;
+  max-height: 290px;
+  width: 100%;
+  margin: auto;
 }
 .slider-banner-brand-details,
 .slider__div--content__header,
@@ -138,14 +140,14 @@ img {
 }
 .slider-banner-brand-details-text__name {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 1rem;
   margin-bottom: 10px;
 }
 .slider-banner-brand-details-text__tags {
   background: #1f2937;
   border-radius: 20px;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 0.75rem;
   display: inline-block;
   text-align: center;
   padding: 2.5px 16px;
@@ -153,7 +155,7 @@ img {
 }
 .slider__div--content__header {
   font-weight: 600;
-  font-size: 28px;
+  font-size: 1.75rem;
   line-height: 40px;
   letter-spacing: -0.02em;
   color: #fff;
@@ -163,13 +165,12 @@ img {
 .slider-details {
   display: flex;
   justify-content: space-between;
-  margin-top: 25px;
-  margin-bottom: 20px;
+  padding-top: 1.5rem;
   align-items: center;
 }
 .slider-details__knowmore {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 24px;
   text-align: center;
   color: #f3f7ff;
@@ -177,10 +178,11 @@ img {
   border: solid 1.5px #f3f7ff;
   padding: 10px 20px;
   border-radius: 8px;
+  text-decoration: none;
 }
 .slider-details__expiry {
   font-weight: 500;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #3b4355;
 }
 @keyframes mynewmove {

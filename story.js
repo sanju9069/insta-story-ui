@@ -1,9 +1,10 @@
-const dataId = document.querySelectorAll('div[data-slider]');
-const statusWrap = document.querySelector('.status');
+const dataId = document.querySelectorAll('[data-slider]');
+const statusWrap = document.querySelectorAll('[data-status]');
 const getSlideLength = dataId.length - 1;
-const next = document.querySelector('.next');
-const prev = document.querySelector('.prev');
-const stopStart = document.querySelector('.stop-progress');
+const next = document.querySelectorAll('[data-next]');
+const prev = document.querySelectorAll('[data-prev]');
+const stopStart = document.querySelectorAll('[data-pause-play]');
+const visited = 'visited';
 let spanHtml = '';
 let currentSlide = 0;
 let autoPlay = null;
@@ -15,15 +16,20 @@ dataId[0].style.display = 'block';
 
 // populate pagination as per slide count
 for (let i = 0; i <= getSlideLength; i++) {
-  spanHtml += `<button class="bars"><span data-id="${i}"></span></button>`;
+  const btn = document.createElement('button');
+  btn.classList.add('bars');
+  const span = document.createElement('span');
+  span.setAttribute('data-id', i);
+  btn.appendChild(span);
+  statusWrap[0].append(btn);
 }
-statusWrap.innerHTML = spanHtml;
-const getProgessSpan = document.querySelectorAll('.status > button > span');
+
+const getProgessSpan = document.querySelectorAll('[data-id]');
 
 // run slide autoplay at initial
 const autoPlayMethod = () => {
   getProgessSpan[0].style.animation = `mynewmove ${duration / 1000}s linear`;
-  getProgessSpan[0].classList.add('visited');
+  getProgessSpan[0].classList.add(visited);
   autoPlay = setInterval(nextMethod, duration);
 };
 
@@ -42,44 +48,32 @@ const runProgressBar = () => {
     getProgessSpan[currentSlide].style.animation = `mynewmove ${
       duration / 1000
     }s linear`;
-    getProgessSpan[currentSlide].classList.add('visited');
+    getProgessSpan[currentSlide].classList.add(visited);
   }, 0);
   dataId[currentSlide].style.display = 'block';
   autoPlay = setInterval(nextMethod, duration);
 };
 
-// next prev button enable disable
-const buttonAbleDisable = (bool1, bool2) => {
-  prev.disabled = bool1;
-  next.disabled = bool2;
-};
-
 // onclick of next slide
 const nextMethod = () => {
-  if (getSlideLength === 0) {
-    buttonAbleDisable(false, false);
-    return;
-  }
+  if (getSlideLength === 0) return;
   currentSlide++;
   if (currentSlide >= getSlideLength) {
     currentSlide = getSlideLength;
   }
   getProgessSpan[currentSlide - 1].style.animation = `mynewmove 0s linear`;
-  getProgessSpan[currentSlide - 1].classList.add('visited');
+  getProgessSpan[currentSlide - 1].classList.add(visited);
   runProgressBar();
 };
 
 // onclick of prev slide
 const prevMethod = () => {
-  if (getSlideLength === 0) {
-    buttonAbleDisable(false, false);
-    return;
-  }
+  if (getSlideLength === 0) return;
   currentSlide--;
   if (currentSlide <= 0) {
     currentSlide = 0;
   }
-  getProgessSpan[currentSlide + 1].classList.remove('visited');
+  getProgessSpan[currentSlide + 1].classList.remove(visited);
   getProgessSpan[currentSlide + 1].style = '';
   getProgessSpan[currentSlide].style = '';
   runProgressBar();
@@ -90,14 +84,54 @@ const autoPlayStop = () => {
   pause = !pause;
   if (!pause) {
     runProgressBar();
-    this.classList.remove('pause');
+    stopStart[0].classList.remove('pause');
   } else {
     clearInterval(autoPlay);
-    this.classList.add('pause');
+    getProgessSpan[currentSlide].classList.remove('visited');
+    getProgessSpan[currentSlide].style = '';
+    stopStart[0].classList.add('pause');
   }
 };
 
 autoPlayMethod();
-next.addEventListener('click', nextMethod);
-prev.addEventListener('click', prevMethod);
-//stopStart.addEventListener('click', autoPlayStop);
+next[0].addEventListener('click', nextMethod);
+prev[0].addEventListener('click', prevMethod);
+//stopStart[0].addEventListener('click', autoPlayStop);
+
+const dummyobj = [
+  {
+    a: 1,
+    ev: 'A',
+    uni: 1,
+  },
+  {
+    a: 1,
+    ev: 'S',
+    uni: 2,
+  },
+  {
+    a: 1,
+    ev: 'A',
+    uni: 3,
+  },
+  {
+    a: 2,
+    ev: 'A',
+    uni: 4,
+  },
+  {
+    a: 2,
+    ev: 'A',
+    uni: 5,
+  },
+];
+
+let objKeys = [];
+for (let i = 0; i < dummyobj.length; i++) {
+  let num = dummyobj[1].a;
+  if (dummyobj[i].ev === 'S') continue;
+  num = dummyobj[i].a;
+  if (dummyobj[i].a === num) {
+  }
+  num = null;
+}
